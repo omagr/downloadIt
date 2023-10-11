@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.font-outline-2-lig {
+  -webkit-text-stroke: 2px #101010;
+}
+
+.font-outline-2-dark {
+  -webkit-text-stroke: 2px rgb(142, 78, 198);
+}
+
+img {
+  position: relative !important;
+}
