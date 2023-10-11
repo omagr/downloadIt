@@ -4,12 +4,12 @@ import { Scripts } from '@/lib/icons';
 import { Spinner } from '@/lib/spin';
 import { useEffect, useRef, useState } from 'react';
 
-const urlRegex =
-  /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
+// eslint-disable-next-line
+const urlRegex = `/^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i`;
+
 const base = '/api/backend/';
 
 export default function Input({ setLink }) {
-  const input = useRef(null);
   const [platform, setPlatform] = useState(0);
   const [url, setUrl] = useState();
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,6 @@ export default function Input({ setLink }) {
     element.href = url;
     element.download = Date.now();
     document.body.appendChild(element);
-    console.log('click');
     element.click();
     document.body.removeChild(element);
   };
@@ -34,7 +33,6 @@ export default function Input({ setLink }) {
         headers: { 'Content-Type': 'application/json' },
       });
       const data = await response.json();
-      console.log(data);
       if (data.status === 200) {
         setLink(data.link);
         download(data.link);
