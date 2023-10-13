@@ -5,7 +5,7 @@ import { Spinner } from '@/lib/spin';
 import { useEffect, useRef, useState } from 'react';
 
 // eslint-disable-next-line
-const urlRegex = `/^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i`;
+const urlRegex = /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
 
 const base = '/api/backend/';
 
@@ -24,8 +24,8 @@ export default function Input({ setLink }) {
   };
 
   async function handleSubmit() {
-    setLoading(true);
     if (!platform) return console.log('invalid request');
+    setLoading(true);
     try {
       const response = await fetch(base, {
         method: 'POST',
@@ -33,11 +33,9 @@ export default function Input({ setLink }) {
         headers: { 'Content-Type': 'application/json' },
       });
       const data = await response.json();
-      if (data.status === 200) {
-        setLink(data.link);
-        download(data.link);
-      }
-      return console.log('something went wrnog!');
+      if (data.status != 200) return console.log('something went wrnog!');
+      setLink(data.link);
+      download(data.link);
     } catch (error) {
       console.log(error, 'something went wrnog!');
     } finally {
@@ -67,7 +65,7 @@ export default function Input({ setLink }) {
           onChange={(e) => setUrl(e.target.value)}
           type="url"
           className=" 
-              w-full pl-20  md:pl-28 text-base font-atyp font-bold bg-transparent focus:outline-none"
+              w-full pl-20 select-all md:pl-28 text-base font-atyp font-bold bg-transparent focus:outline-none"
           placeholder="https://"
         />
       </div>
