@@ -5,7 +5,8 @@ import { Spinner } from '@/lib/spin';
 import { useEffect, useRef, useState } from 'react';
 
 // eslint-disable-next-line
-const urlRegex = /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
+const urlRegex =
+  /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
 
 const base = '/api/backend/';
 
@@ -17,6 +18,8 @@ export default function Input({ setLink }) {
   const download = (url) => {
     const element = document.createElement('a');
     element.href = url;
+    element.target = '_blank';
+    element.download = 'custom_filename.zip'; // Set the desired filename here
     element.download = Date.now();
     document.body.appendChild(element);
     element.click();
@@ -55,8 +58,8 @@ export default function Input({ setLink }) {
 
   return (
     <section className="flex flex-col md:flex-row gap-6 ">
-      <div className="relative w-full mt-4 md:mt-14 py-5 md:py-6 bg-design-grytext dark:bg-design-tirBase text-design-dirtext rounded-3xl border border-1 border-design-dirtext shadow-des hover:shadow-none hover:translate-y-1">
-        <span className="absolute w-16 md:w-24 min-h-full top-0 rounded-l-3xl   font-atyp font-bold border-r-2 border-dashed border-design-dirtext grid place-content-center text-2xl  ">
+      <div className="relative w-full mt-4 md:mt-8 py-5 md:py-6 bg-design-grytext dark:bg-design-tirBase text-design-dirtext rounded-3xl border-4 border-design-dirtext shadow-des hover:shadow-none hover:translate-y-1">
+        <span className="absolute w-16 md:w-24 min-h-full top-0 rounded-l-3xl    font-bold border-r-2 border-dashed border-design-dirtext grid place-content-center text-2xl  ">
           {platform != 0 ? Scripts[platform].icon() : '👋🏼'}
         </span>
         <input
@@ -65,21 +68,21 @@ export default function Input({ setLink }) {
           onChange={(e) => setUrl(e.target.value)}
           type="url"
           className=" 
-              w-full pl-20 select-all md:pl-28 text-base font-atyp font-bold bg-transparent focus:outline-none"
+              w-full pl-20 select-all md:pl-28 text-base  font-bold bg-transparent focus:outline-none"
           placeholder="https://"
         />
       </div>
       <button
         onClick={handleSubmit}
         type="submit"
-        className="group relative w-full md:w-1/4 md:mt-14 py-5 md:py-6 bg-design-grytext dark:bg-design-tirBase text-design-dirtext rounded-3xl border border-1 border-design-dirtext shadow-des hover:shadow-none hover:translate-y-1 flex justify-center items-center gap-2"
+        className="group relative w-full md:w-1/4 md:mt-8 py-5 md:py-6 bg-design-grytext dark:bg-design-tirBase text-design-dirtext rounded-3xl border-4  border-design-dirtext shadow-des hover:shadow-none hover:translate-y-1 flex justify-center items-center gap-2"
       >
         {loading ? (
           <Spinner />
         ) : (
           <>
             {' '}
-            <p className="min-h-full top-0 rounded-l-3xl  text-base font-atyp font-bold   border-design-dirtext">
+            <p className="min-h-full top-0 rounded-l-3xl  text-base  font-bold   border-design-dirtext">
               Download
             </p>
             <strong className="group-hover:translate-x-1">
@@ -101,34 +104,4 @@ export default function Input({ setLink }) {
       </button>
     </section>
   );
-}
-
-// useEffect(() => {
-//     console.log('value');
-//     input.current.focus();
-//     // Read from the clipboard when the component mounts
-//     const readClipboard = async () => {
-//         try {
-//             const text = await navigator.clipboard.readText();
-//             //   setCopiedText(text);
-//             console.log(text);
-//         } catch (error) {
-//             console.error('Error reading text from clipboard:', error);
-//         }
-//     };
-//     readClipboard();
-//     // async () => {
-//     //     try {
-//     //         const value = await navigator.clipboard.readText();
-//     //         console.log(value)
-//     //         if (input.current) {
-//     //             input.current.value = value;
-//     //         }
-//     //     } catch (error) {
-//     //         console.error('Error reading text from clipboard:', error);
-//     //     } finally {
-//     //         input.current.focus()
-//     //     }
-//     // }
-//     return;
-// }, []);
+};

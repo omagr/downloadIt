@@ -1,8 +1,9 @@
+import { NextResponse } from 'next/server';
+
 import instagram from '@/scripts/instagram';
 import reddit from '@/scripts/reddit';
 import twitter from '@/scripts/twitter';
 import youtube from '@/scripts/youtube';
-import { NextResponse } from 'next/server';
 
 const Scripts = {
   1: {

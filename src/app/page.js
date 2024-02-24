@@ -1,26 +1,29 @@
 'use client';
 
-import Input from '@/components/input';
-import Window from '@/components/window';
 import { useState } from 'react';
+import Input from '@/components/input';
 
 export default function Home() {
   const [link, setLink] = useState();
   return (
-    <main className="mt-36">
-      <span
-        className=" font-atyp leading-[48px] sm:leading-[60px]  text-[2.5rem] 
-     sm:text-6xl
-       font-extrabold dark:text-design-secBase text-design-dirtext"
-      >
-        Empowering <br /> digital landscape, download
-        <br />
-        <strong className="text-transparent font-extrabold  outline outline-1 font-outline-2-lig dark:font-outline-2-dark">
-          anything, anytime, anywhere.
-        </strong>
+    <main className="md:mt-20 max-h-full">
+      <span className={font_style_for_cal_tw}>
+        {' '}
+        Empowering <br /> digital landscape for everyone.
+        <p className=" mt-5 text-2xl w-full">
+          {' '}
+          download anything, anytime, anywhere.{' '}
+
+        </p>
+        <p className=" text-base w-full">
+          {' '}
+          *only available for reddit, youtube, instagram, twitter (x.com){' '}
+        </p>
       </span>
       <Input setLink={setLink} />
-      <Window link={link} />
     </main>
   );
 }
+
+const font_style_for_cal_tw =
+  'font-cal leading-[100%] md:!leading-xl text-[40px] tracking-[-0.002em] md:text-[75px] lg:text-[79px] xl:text-[114px] text-shadow-gray !text-[clamp(52px,_7.45vw,_114px)] xl:text-[clamp(52px,_7.8vw,_114px)]';

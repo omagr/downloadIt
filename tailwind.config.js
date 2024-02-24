@@ -9,7 +9,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      atyp: 'var(--font-AtypDisplay)',
+      cal: 'var(--font-CalSans)',
+      matter: 'var(--font-MatterBold)',
     },
     extend: {
       colors: {

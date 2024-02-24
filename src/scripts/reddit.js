@@ -49,12 +49,17 @@ const extractDownloadLink = (html) => {
 };
 
 const reddit = handler(async (url) => {
+  console.log("\nreddit sya hello")
+  console.log({ url })
   const { params, body } = createFormData(url);
   const response = await axios.post(Base, qs.stringify(body), {
     headers,
     params,
   });
+  console.log({ response })
   const downloadLink = extractDownloadLink(response.data);
+  console.log({ downloadLink })
+
   return { status: response.status, link: downloadLink };
 });
 

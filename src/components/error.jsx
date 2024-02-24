@@ -645,7 +645,7 @@ export default function Error() {
                             </g>
                         </svg>
                     </div>
-                    <div className="font-atyp col-md-6 align-self-center">
+                    <div className=" col-md-6 align-self-center">
                         <h1>404</h1>
                         <h2>UH OH! You are lost.</h2>
                         <p>

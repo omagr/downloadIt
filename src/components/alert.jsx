@@ -9,7 +9,7 @@ export default function Alert({ messege, disabled = true }) {
     <section
       className={clsx(
         closedModal && 'hidden',
-        'fixed left-0 bottom-6 w-screen grid place-content-center'
+        'fixed  left-0 bottom-6 w-screen grid place-content-center'
       )}
     >
       <div
@@ -36,3 +36,4 @@ export default function Alert({ messege, disabled = true }) {
     </section>
   );
 }
+

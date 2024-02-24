@@ -13,7 +13,7 @@ export default function Error({ error, reset }) {
         <div>
             < ErrorPage />
             <button
-                className='font-atyp text-center font-bold border border-black px-4 py-2 mt-4 rounded-xl'
+                className=' text-center font-bold border border-black px-4 py-2 mt-4 rounded-xl'
                 onClick={
                     // Attempt to recover by trying to re-render the segment
                     () => reset()

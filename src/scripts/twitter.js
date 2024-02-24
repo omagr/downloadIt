@@ -46,6 +46,7 @@ const twitter = handler(async (url) => {
   const formData = createFormData(url);
   const response = await axios.post(Base, qs.stringify(formData), { headers });
   const downloadLink = extractDownloadLink(response.data);
+  console.log({ downloadLink })
   return { status: response.status, link: downloadLink };
 });
 
