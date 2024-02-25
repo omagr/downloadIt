@@ -1,16 +1,19 @@
 'use client';
+
+import { useEffect, useState } from 'react';
+import { Toaster, toast } from 'sonner';
+
 import { socialMedia } from '@/helpers/utils';
 import { Scripts } from '@/lib/icons';
 import { Spinner } from '@/lib/spin';
-import { useEffect, useRef, useState } from 'react';
 
 // eslint-disable-next-line
 const urlRegex =
-  /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
+  /^(https?|ftp):\/\/(([a-z\d]([a-z\d-]*[a-z\d])?\.)+[a-z]{2,}|localhost)(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\\#[-a-z\d_]*)?$/i;
 
 const base = '/api/backend/';
 
-export default function Input({ setLink }) {
+export default function Input() {
   const [platform, setPlatform] = useState(0);
   const [url, setUrl] = useState();
   const [loading, setLoading] = useState(false);
@@ -37,10 +40,11 @@ export default function Input({ setLink }) {
       });
       const data = await response.json();
       if (data.status != 200) return console.log('something went wrnog!');
-      setLink(data.link);
       download(data.link);
+      toast.success('Content has been downloaded!')
     } catch (error) {
       console.log(error, 'something went wrnog!');
+      toast.error('Something went wrong!')
     } finally {
       setLoading(false);
       setPlatform(0);
@@ -58,6 +62,7 @@ export default function Input({ setLink }) {
 
   return (
     <section className="flex flex-col md:flex-row gap-6 ">
+      <Toaster richColors position="top-center" />
       <div className="relative w-full mt-4 md:mt-8 py-5 md:py-6 bg-design-grytext dark:bg-design-tirBase text-design-dirtext rounded-3xl border-4 border-design-dirtext shadow-des hover:shadow-none hover:translate-y-1">
         <span className="absolute w-16 md:w-24 min-h-full top-0 rounded-l-3xl    font-bold border-r-2 border-dashed border-design-dirtext grid place-content-center text-2xl  ">
           {platform != 0 ? Scripts[platform].icon() : '👋🏼'}
@@ -69,7 +74,7 @@ export default function Input({ setLink }) {
           type="url"
           className=" 
               w-full pl-20 select-all md:pl-28 text-base  font-bold bg-transparent focus:outline-none"
-          placeholder="https://"
+          placeholder="paste your url here..."
         />
       </div>
       <button
@@ -104,4 +109,4 @@ export default function Input({ setLink }) {
       </button>
     </section>
   );
-};
+}

@@ -12,7 +12,7 @@ export default function Navbar() {
         </h1>
       </Link>
 
-      <Link href="https://twitter.com/om_agr">👉 omagr</Link>
+      <Link target='_blank' href="https://twitter.com/om_agr">👉 omagr</Link>
     </header>
   );
 }

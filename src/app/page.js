@@ -1,10 +1,6 @@
-'use client';
-
-import { useState } from 'react';
 import Input from '@/components/input';
 
 export default function Home() {
-  const [link, setLink] = useState();
   return (
     <main className="md:mt-20 max-h-full">
       <span className={font_style_for_cal_tw}>
@@ -13,14 +9,13 @@ export default function Home() {
         <p className=" mt-5 text-2xl w-full">
           {' '}
           download anything, anytime, anywhere.{' '}
-
         </p>
         <p className=" text-base w-full">
           {' '}
           *only available for reddit, youtube, instagram, twitter (x.com){' '}
         </p>
       </span>
-      <Input setLink={setLink} />
+      <Input />
     </main>
   );
 }
